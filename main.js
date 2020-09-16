@@ -18,7 +18,7 @@ var app = http.createServer(function(request,response){
           var list = template.list(filelist);
           var html = template.html(title, list,
             `<h2>${title}</h2>${description}`,
-            `<a href="/create">create</a>`
+            `<div id="btnArea"><a href="/create">create</a></div></ol>`
           );
           response.writeHead(200);
           response.end(html);
@@ -36,12 +36,12 @@ var app = http.createServer(function(request,response){
             var list = template.list(filelist);
             var html = template.html(sanitizedTitle, list,
               `<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
-              `<a href="/create">create</a>
+              `<div id="btnArea"><a href="/create">create</a>
               <a href="/update?id=${sanitizedTitle}">update</a>
               <form action="delete_process" method="post">
                 <input type="hidden" name="id" value="${sanitizedTitle}">
                 <input type="submit" value="delete">
-              </form>
+              </form></div></ol>
               `
             );
             response.writeHead(200);
@@ -64,7 +64,7 @@ var app = http.createServer(function(request,response){
               <input type="submit">
             </p>
           </form>
-          `,'');
+          `,'</ol>');
         response.writeHead(200);
         response.end(html);
       });
@@ -101,7 +101,7 @@ var app = http.createServer(function(request,response){
               </p>
             </form>
             `
-            ,''
+            ,'</ol>'
           );
           response.writeHead(200);
           response.end(html);
