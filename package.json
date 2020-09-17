@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/brian4462/node_test#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "mysql2": "^2.1.0",
     "sanitize-html": "^1.27.4"
   }
