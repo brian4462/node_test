@@ -1,12 +1,27 @@
-var express = require('express')
-var app = express()
+var express = require('express');
+var app = express();
+
+var url = require('url');
+var qs = require('querystring');
+var db = require('./lib/db');
+var template = require('./lib/template.js');
+var topic = require('./lib/topic');
+var author = require('./lib/author');
 
 //route, routing 길을따라 가다가 갈림길에서 적당한곳으로 방향을 잡는것
-app.get('/', (req, res) => res.send('Hello World!'))
-app.get('/page', (req, res) => res.send('/page'))
+app.get('/', function(request, response){
+  var _url = request.url;
+  var queryData = url.parse(_url, true).query;
+  if(queryData.id === undefined){
+    topic.home(request, response);
+  } else {
+    topic.page(request, response);
+  }
+});
+app.get('/page', function(req, res){return res.send('/page')});
 //app.get('/', function(req,res){return res.send('Hello World!')})
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(3000, () => console.log('Example app listening on port 3000!'));
 
 // var http = require('http');
 // var url = require('url');
