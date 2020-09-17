@@ -10,16 +10,12 @@ var author = require('./lib/author');
 
 //route, routing 길을따라 가다가 갈림길에서 적당한곳으로 방향을 잡는것
 app.get('/', function(request, response){
-  var _url = request.url;
-  var queryData = url.parse(_url, true).query;
-  if(queryData.id === undefined){
-    topic.home(request, response);
-  } else {
-    topic.page(request, response);
-  }
+  topic.home(request, response);
 });
-app.get('/page', function(req, res){return res.send('/page')});
-//app.get('/', function(req,res){return res.send('Hello World!')})
+
+app.get('/page/:pageId', function(request, response){
+  topic.page(request, response);
+});
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
 
