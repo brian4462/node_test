@@ -1,7 +1,10 @@
-const express = require('express')
-const app = express()
+var express = require('express')
+var app = express()
 
+//route, routing 길을따라 가다가 갈림길에서 적당한곳으로 방향을 잡는것
 app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/page', (req, res) => res.send('/page'))
+//app.get('/', function(req,res){return res.send('Hello World!')})
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
 
