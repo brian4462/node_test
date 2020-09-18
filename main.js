@@ -7,6 +7,8 @@ var db = require('./lib/db.js');
 var template = require('./lib/template.js');
 var bodyParser = require('body-parser');
 var compression = require('compression');
+var helmet = require('helmet');
+
 var topicRouter = require('./routes/topic.js');
 var authorRouter = require('./routes/author.js');
 var indexRouter = require('./routes/index.js');
@@ -14,6 +16,7 @@ var indexRouter = require('./routes/index.js');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(compression());
+app.use(helmet());
 
 app.use('/topic',topicRouter);
 app.use('/author',authorRouter);
